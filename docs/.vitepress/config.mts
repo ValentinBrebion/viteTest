@@ -6,6 +6,7 @@ export default defineConfig({
   description: "test",
    head: [
     ['link', { rel: 'manifest', href: '/manifest.json' }],
+     ['script', { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
     [
       'script',
       { id: 'register-sw' },

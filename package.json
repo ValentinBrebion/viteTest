@@ -5,10 +5,6 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "vitepress": "^1.6.3",
-    "@netlify/plugin-identity": "^3.0.0"
-  },
-  "dependencies": {
-    "netlify-identity-widget": "^1.9.2"
+    "vitepress": "^1.6.3"
   }
 }

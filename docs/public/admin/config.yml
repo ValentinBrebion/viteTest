@@ -1,18 +1,17 @@
 backend:
   name: git-gateway
+  repo: ValentinBrebion/vitetest
   branch: main # Branch to update (optional; defaults to master)
 
-media_folder: public/img
-public_folder: /img
+media_folder: "docs/public/img"
+public_folder: "/img"
 
 collections:
-  - name: 'guide'
-    label: 'Guide'
-    folder: 'guide'
+  - name: 'docs'
+    label: 'Documentation'
+    folder: 'docs'
     create: true
     slug: '{{slug}}'
-    editor:
-      preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
