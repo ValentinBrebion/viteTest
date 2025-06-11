@@ -5,6 +5,7 @@ const allowedHosts = [
   'localhost',
   '127.0.0.1',
   // Ajoutez ici vos domaines ou adresses IP autorisés
+  'test-autorise.com',
   'votredomaine.com',
   '192.168.1.100' // Exemple d'adresse IP
 ];

@@ -17,6 +17,23 @@ export default defineConfig({
     ]
   ],
   vite: {
+    server: {
+      host: '0.0.0.0',
+      port: 5174,
+      strictPort: true,
+      hmr: {
+        host: 'localhost',
+        port: 5174,
+        // Désactive la vérification stricte des hôtes
+        protocol: 'ws'
+      },
+      // Liste des hôtes autorisés
+      allowedHosts: [
+        'test-autorise.com',
+        'localhost',
+        '127.0.0.1'
+      ]
+    },
     plugins: [
       restrictAccess()
     ]
