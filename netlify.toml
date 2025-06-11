@@ -1,0 +1,9 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[template.environment]
+  ENABLE_IDENTITY = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-identity"
