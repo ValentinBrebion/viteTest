@@ -1,10 +1,15 @@
 {
   "scripts": {
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:build": "vitepress build docs node example.js",
+    "docs:preview": "vitepress preview docs",
+    "docs:all": "vitepress dev docs node example.js"
   },
   "devDependencies": {
     "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "dotenv": "^16.5.0"
   }
 }

@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitePress</title>
+</head>
+<body>
+  <h1>Bienvenue sur VitePress</h1>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    import dotenv from 'dotenv';
+
+    dotenv.config();
+
+    const supabaseUrl = 'https://efyehoznpzaaqelgxibl.supabase.co';
+    const supabaseKey = process.env.VITE_SUPABASE_KEY;
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    async function fetchData() {
+      const { data, error } = await supabase.from('name').select('*');
+      if (error) {
+        console.error('Erreur :', error);
+      } else {
+        console.log('Données récupérées :', data);
       }
-    </script>
-  </body>
+    }
+
+    fetchData();
+  </script>
+</body>
 </html>
