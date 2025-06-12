@@ -1,4 +1,4 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const supabaseUrl = 'https://efyehoznpzaaqelgxibl.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmeWVob3pucHphYXFlbGd4aWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTA1NjgsImV4cCI6MjA2NTI4NjU2OH0.RyE6U1frOhI3YDCpeV2OL_6WS7wyQT9DCgaAIUecbPg';
@@ -46,51 +46,18 @@ async function checkConnection() {
 checkConnection().then(isConnected => {
   if (isConnected) {
     console.log('Prêt à utiliser Supabase!');
+    // Vous pouvez appeler fetchData ici si nécessaire
+    fetchData();
   }
 });
 
-async function fetchData(email, password) {
-  try {
-    console.log('Tentative de connexion...');
-    
-    // Étape 1: Connexion avec email/mot de passe
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email: email || 'votre@email.com',  // Remplacez par une valeur par défaut ou utilisez un formulaire
-      password: password || 'votremotdepasse'  // ⚠️ À ne pas faire en production
-    });
-
-    if (authError) {
-      console.error('Erreur de connexion:', authError.message);
-      return { error: authError };
-    }
-
-    console.log('✅ Connecté avec succès en tant que:', authData.user.email);
-
-    // Étape 2: Récupération des données
-    console.log('Récupération des données...');
-    const { data, error } = await supabase
-      .from('name')
-      .select('*');
-
-    if (error) {
-      console.error('Erreur de récupération des données:', error);
-      return { error };
-    }
-
-    console.log('✅ Données récupérées avec succès');
-    return { data, user: authData.user };
-    
-  } catch (error) {
-    console.error('Erreur inattendue:', error);
-    return { error };
+async function fetchData() {
+  console.log('Tentative de récupération des données...');
+  const { data, error } = await supabase.from('name').select('*');
+  if (error) {
+    console.error('Erreur de récupération des données :', error);
+  } else {
+    console.log('Données récupérées avec succès :', data);
   }
+  return data;
 }
-
-// Exemple d'utilisation :
-// Pour tester immédiatement (à supprimer en production)
-fetchData('vb.brebionpro@gmail.com', 'Azertyuiop1234567890@#')
-  .then(({ data, user, error }) => {
-    if (error) return;
-    console.log('Utilisateur connecté:', user);
-    console.log('Données:', data);
-  });
